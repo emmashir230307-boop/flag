@@ -12,8 +12,8 @@ def create_board(board):
     for i in range(4):
         for j in range(2):
             board[i][j]=consts.SOLDIER
-    for i in range(consts.SCREEN_SIZE[1]-3,consts.SCREEN_SIZE[1]):
-        for j in range(consts.SCREEN_SIZE[0]-4,consts.SCREEN_SIZE[0]):
+    for i in range(consts.FLAG_POS[0],consts.SCREEN_SIZE[1]):
+        for j in range(consts.FLAG_POS[1],consts.SCREEN_SIZE[0]):
             board[i][j]=consts.FLAG
 
 def insert_mines(board):
