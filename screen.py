@@ -1,8 +1,9 @@
 import random
 from random import randrange
-
 import pygame
 import consts
+from flag.consts import INITIAL_SOLDIER
+
 
 def setting_up():
     pygame.init()
@@ -53,5 +54,6 @@ def draw_matrix(matrix):
                 screen.blit(consts.MINE_IMG,mine_loc)
     pygame.display.update()
 
-def draw_items(screen):
-        print()
+def draw_items(screen,soldier_pos):
+    screen.blit(consts.SOLDIER_IMG,soldier_pos)
+    screen.blit(consts.FLAG_IMG,consts.FLAG_POS)
