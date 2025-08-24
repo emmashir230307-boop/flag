@@ -1,1 +1,3 @@
-print('hh')
+import pygame
+
+board=[]
