@@ -4,19 +4,18 @@ import pygame
 import consts
 from solider import make_soldier
 
-
+screen = pygame.display.set_mode((consts.SCREEN_WIDTH,consts.SCREEN_HEIGHT))
 def setting_up():
     pygame.init()
     pygame.display.set_caption('Flag Game')
     draw_screen()
 
 def draw_screen():
-    screen = pygame.display.set_mode((consts.SCREEN_WIDTH,consts.SCREEN_HEIGHT))
     screen.fill(consts.SCREEN_COLOR)
-    draw_grass(screen)
+    draw_grass()
     pygame.display.update()
 
-def draw_grass(screen):
+def draw_grass():
     img=consts.GRASS_IMG
     grass_loc=[]
     screen_size=consts.SCREEN_SIZE
@@ -54,8 +53,8 @@ def draw_matrix(matrix):
                 screen.blit(consts.MINE_IMG,mine_loc)
     pygame.display.update()
 
-def draw_items(screen,soldier_pos):
-    location=make_soldier(soldier_pos)['Location']
+def draw_items(x,y):
+    location=make_soldier(x,y)['Location']
     screen.blit(consts.SOLDIER_IMG,location)
     screen.blit(consts.FLAG_IMG,consts.FLAG_POS)
     pygame.display.update()
