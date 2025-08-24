@@ -23,6 +23,5 @@ def insert_mines(board):
         while consts.MINE in board[row][col:col+3] or consts.SOLDIER in board[row][col:col+3] or consts.FLAG in board[row][col:col+3]:
             row = random.randint(0, consts.SCREEN_SIZE[1] - 1)
             col = random.randint(0, consts.SCREEN_SIZE[0] - 3)
-        print(row,col)
         board[row][col:col + 3] = [consts.MINE,consts.MINE,consts.MINE]
 
