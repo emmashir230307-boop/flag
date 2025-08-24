@@ -41,3 +41,11 @@ def draw_grass(screen):
             screen.blit(img,tpl)
     pygame.display.flip()
 
+def draw_matrix(matrix):
+    #draw the screen as a grid
+    for row in range(len(matrix)):
+        for col in range(len(matrix[row])):
+            if matrix[row][col]==consts.MINE:
+                pass #draw the mine in the wanted location*square
+            else:
+                continue
