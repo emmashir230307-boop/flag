@@ -26,3 +26,13 @@ def main(state):
 
 if __name__=="__main__":
     main(state)
+
+running = True
+clock=pygame.time.Clock()
+while running:
+    clock.tick(consts.FPS)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    pygame.display.update()
+pygame.quit()

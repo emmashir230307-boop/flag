@@ -7,16 +7,8 @@ import consts
 def setting_up():
     pygame.init()
     pygame.display.set_caption('Flag Game')
-    clock=pygame.time.Clock()
     draw_screen()
-    running = True
-    while running:
-        clock.tick(consts.FPS)
-        for event in pygame.event.get():
-            if event.type==pygame.QUIT:
-                running=False
-        pygame.display.update()
-    pygame.quit()
+
 def draw_screen():
     screen = pygame.display.set_mode((consts.SCREEN_WIDTH,consts.SCREEN_HEIGHT))
     screen.fill(consts.SCREEN_COLOR)
@@ -39,7 +31,7 @@ def draw_grass(screen):
         loc_tpl=(com_choice_row[i]*consts.SQUARE,com_choice_col[i]*consts.SQUARE)
         grass_loc.append(loc_tpl)
     for tpl in grass_loc:
-        while tpl==consts.INITIAL_SOLDIER or tpl==consts.FLAG_POS or tpl[0]>consts.SCREEN_WIDTH and tpl[1]>consts.SCREEN_HEIGHT:
+        while tpl==consts.INITIAL_SOLDIER or tpl==consts.FLAG_POS or tpl[0]>consts.SCREEN_WIDTH or tpl[1]>consts.SCREEN_HEIGHT:
             row_choice=randrange(screen_size[0])
             col_choice=randrange(screen_size[1])
             tpl=(row_choice,col_choice)
@@ -60,3 +52,5 @@ def draw_matrix(matrix):
                 mine_loc=(row*consts.SQUARE,col*consts.SQUARE)
                 screen.blit(consts.MINE_IMG,mine_loc)
     pygame.display.update()
+
+def draw_items(screen):
