@@ -34,11 +34,10 @@ def draw_grass(screen):
     com_choice_row=random.sample(row_lst,consts.GRASS_NUM)
     com_choice_col=random.sample(col_lst,consts.GRASS_NUM)
     for i in range(len(com_choice_row)):
-        loc_tpl=(com_choice_row[i],com_choice_col[i])
+        loc_tpl=(com_choice_row[i]*consts.SQUARE,com_choice_col[i]*consts.SQUARE)
         grass_loc.append(loc_tpl)
     for tpl in grass_loc:
-        screen.blit(img,tpl)
+        if tpl[0]<consts.SCREEN_WIDTH and tpl[1]<consts.SCREEN_HEIGHT:
+            screen.blit(img,tpl)
     pygame.display.flip()
 
-
-setting_up()
