@@ -5,7 +5,6 @@ SCREEN_SIZE=(50,25)
 SCREEN_COLOR=(0,153,0)
 SQUARE=25
 SCREEN_WIDTH,SCREEN_HEIGHT = SCREEN_SIZE[0]*SQUARE,SCREEN_SIZE[1]*SQUARE
-print(SCREEN_WIDTH,SCREEN_HEIGHT)
 
 EXPLOSION_IMG='pictures/explotion.png'
 EXPLOSION_IMG=pygame.image.load(EXPLOSION_IMG)
@@ -45,7 +44,9 @@ SOLDIER_NIGHT_IMG=pygame.transform.scale(SOLDIER_NIGHT_IMG,(2*SQUARE,4*SQUARE))
 
 FLAG="flag"
 SOLDIER="soldier"
+MINE='mine'
 EMPTY="empty"
+
 WIN_MESSAGE="You Win!"
 LOSE_MESSAGE="You Stinky Loser"
 START_MESSAGE="Welcome to the flag game!\nHave Fun!"
