@@ -3,6 +3,7 @@ import time
 import consts
 import screen
 import game_field
+import solider
 
 state= {
     'state':consts.RUNNING_STATE,
@@ -36,10 +37,29 @@ def handle_events():
             state['running']=False
         elif state['state']!=consts.RUNNING_STATE:
             continue
-        #if game_field.touched_flag(game_field.board,)
+
+def soldier_location(board):
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j]==consts.SOLDIER:
+                return i,j
+    return None
+
+
+
+def up(board):
+    row,col=soldier_location(board)
+    if solider.out_of_range(row-1,col):
+        new_row,new_col=row-1,col
+        for i in range(row,row+4):
+            for j in range(col,col+2):
+                board[i][j] = consts.SOLDIER
+        for i in range(new_row,new_row+4):
+            for j in range(new_col,new_col+2):
+                board[i][j] = consts.SOLDIER
 
 
 
 if __name__=="__main__":
-    main(state)
+    main()
 
