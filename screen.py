@@ -2,7 +2,7 @@ import random
 from random import randrange
 import pygame
 import consts
-from consts import INITIAL_SOLDIER
+from solider import make_soldier
 
 
 def setting_up():
@@ -55,5 +55,7 @@ def draw_matrix(matrix):
     pygame.display.update()
 
 def draw_items(screen,soldier_pos):
-    screen.blit(consts.SOLDIER_IMG,soldier_pos)
+    location=make_soldier(soldier_pos)['Location']
+    screen.blit(consts.SOLDIER_IMG,location)
     screen.blit(consts.FLAG_IMG,consts.FLAG_POS)
+    pygame.display.update()
