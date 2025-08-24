@@ -54,6 +54,9 @@ SOLDIER="soldier"
 MINE='mine'
 EMPTY="empty"
 
+INITIAL_SOLDIER=(0,0)
+FLAG_POS=(SCREEN_SIZE[1]-3,SCREEN_SIZE[0]-4)
+
 WIN_MESSAGE="You Win!"
 LOSE_MESSAGE="You Stinky Loser"
 START_MESSAGE="Welcome to the flag game!\nHave Fun!"

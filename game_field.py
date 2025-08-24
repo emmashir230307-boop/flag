@@ -26,8 +26,3 @@ def insert_mines(board):
         print(row,col)
         board[row][col:col + 3] = [consts.MINE,consts.MINE,consts.MINE]
 
-
-create_board(board)
-insert_mines(board)
-for i in board:
-    print(i)
