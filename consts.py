@@ -12,3 +12,6 @@ SOLDIER_NIGHT_IMG='soldier_nigth.png'
 FLAG="flag"
 SOLDIER="soldier"
 EMPTY="empty"
+WIN_MESSAGE="You Win!"
+LOSE_MESSAGE="You Stinky Loser"
+START_MESSAGE="Welcome to the flag game!\nHave Fun!"
