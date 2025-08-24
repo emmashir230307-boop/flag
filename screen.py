@@ -37,7 +37,9 @@ def draw_grass(screen):
         loc_tpl=(com_choice_row[i]*consts.SQUARE,com_choice_col[i]*consts.SQUARE)
         grass_loc.append(loc_tpl)
     for tpl in grass_loc:
-        if tpl[0]<consts.SCREEN_WIDTH and tpl[1]<consts.SCREEN_HEIGHT:
+        if tpl[0]<consts.SCREEN_WIDTH and tpl[1]<consts.SCREEN_HEIGHT and tpl[0]!=0 and tpl[1]!=0:
+            #later add if the location is not the flags location
+            #add if location is  0,0 or flag location generate again and then place
             screen.blit(img,tpl)
     pygame.display.flip()
 
@@ -47,10 +49,10 @@ def draw_matrix(matrix):
     for row in range(len(matrix)):
         for col in range(len(matrix[row])):
             if matrix[row][col]==consts.MINE:
-                pass
-                #draw the mine in the wanted location*square
-                #relate to the first index of the mine
-                # list of indexes regarding the loc
-            else:
-                continue
+                for k in range(1,3):
+                    if matrix[row][col+k]==consts.MINE:
+                        continue
+                    else:break
+                mine_loc=(row*consts.SQUARE,col*consts.SQUARE)
+                screen.blit(consts.MINE_IMG,mine_loc)
     pygame.display.update()
