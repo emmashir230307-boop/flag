@@ -1,3 +1,4 @@
+FPS=60
 SCREEN_SIZE=(25,50)
 SCREEN_COLOR=(0,153,0)
 EXPLOSION='explotion.png'
