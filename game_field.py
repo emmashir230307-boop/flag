@@ -25,3 +25,15 @@ def insert_mines(board):
             col = random.randint(0, consts.SCREEN_SIZE[0] - 3)
         board[row][col:col + 3] = [consts.MINE,consts.MINE,consts.MINE]
 
+def touched_flag(board,body):
+    for i in body:
+        if board[body[0]][body[1]]==consts.FLAG:
+            return True
+    return False
+
+def touched_mine(board,legs):
+    if board[legs[0]][legs[1]]==consts.MINE:
+        return True
+    return False
+
+

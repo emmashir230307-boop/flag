@@ -54,3 +54,4 @@ def draw_matrix(matrix):
     pygame.display.update()
 
 def draw_items(screen):
+        print()
