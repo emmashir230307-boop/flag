@@ -1,3 +1,3 @@
 import pygame
 
-board=["person"]
+board=['']

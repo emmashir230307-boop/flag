@@ -1,0 +1,11 @@
+SCREEN_SIZE=(25,50)
+SCREEN_COLOR=(0,153,0)
+EXPLOSION='explotion.png'
+FLAG='flag.png'
+GRASS='grass.png'
+INJURY='injury.png'
+MINE='mine.png'
+SNAKE='snake.png'
+SOLDIER='soldier.png'
+SOLDIER2='soldier (2).png'
+SOLDIER_NIGHT='soldier_nigth.png'
