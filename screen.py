@@ -42,10 +42,15 @@ def draw_grass(screen):
     pygame.display.flip()
 
 def draw_matrix(matrix):
-    #draw the screen as a grid
+    screen=pygame.display.set_mode((consts.SCREEN_WIDTH,consts.SCREEN_HEIGHT))
+    screen.blit(consts.GRID_IMG,(0,0))
     for row in range(len(matrix)):
         for col in range(len(matrix[row])):
             if matrix[row][col]==consts.MINE:
-                pass #draw the mine in the wanted location*square
+                pass
+                #draw the mine in the wanted location*square
+                #relate to the first index of the mine
+                # list of indexes regarding the loc
             else:
                 continue
+    pygame.display.update()
