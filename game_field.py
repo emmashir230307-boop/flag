@@ -3,7 +3,7 @@ import random
 
 board=[]
 
-def create_board(board):
+def create_board():
     for i in range(consts.SCREEN_SIZE[1]):
         temp=[]
         for j in range(consts.SCREEN_SIZE[0]):
@@ -16,7 +16,7 @@ def create_board(board):
         for j in range(consts.FLAG_POS[1],consts.SCREEN_SIZE[0]):
             board[i][j]=consts.FLAG
 
-def insert_mines(board):
+def insert_mines():
     for i in range(consts.MINE_NUM):
         row=random.randint(0,consts.SCREEN_SIZE[1]-1)
         col=random.randint(0,consts.SCREEN_SIZE[0]-3)
@@ -26,18 +26,18 @@ def insert_mines(board):
         print(row,col)
         board[row][col:col + 3] = [consts.MINE,consts.MINE,consts.MINE]
 
-def touched_flag(board,body):
+def touched_flag(body):
     for i in body:
         if board[body[0]][body[1]]==consts.FLAG:
             return True
     return False
 
-def touched_mine(board,legs):
+def touched_mine(legs):
     if board[legs[0]][legs[1]]==consts.MINE:
         return True
     return False
 
-def flag_index(board):
+def flag_index():
     indexes = []
     for i in range(len(board)):
         for j in range(len(board[i])):
@@ -45,7 +45,7 @@ def flag_index(board):
                 indexes.append((i,j))
     return indexes
 
-def mines_index(board):
+def mines_index():
     indexes = []
     for i in range(len(board)):
         for j in range(len(board[i])-2):
@@ -60,9 +60,9 @@ def mines_index(board):
                     indexes.append((i,j))
     return indexes
 
-create_board(board)
-insert_mines(board)
-print(mines_index(board))
-print(flag_index(board))
+create_board()
+insert_mines()
+print(mines_index())
+print(flag_index())
 
 
