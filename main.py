@@ -9,6 +9,11 @@ def main():
         pass #print screen
     elif state==consts.WIN_STATE:
         pass #print win
+    elif state==consts.LOSE_STATE:
+        pass #print lose
+    elif state==consts.EXPOSE_MINES_STATE:
+        #print mine screen
+        time.sleep(1)
 
 
 
