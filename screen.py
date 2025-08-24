@@ -2,7 +2,7 @@ import random
 from random import randrange
 import pygame
 import consts
-from flag.consts import INITIAL_SOLDIER
+from consts import INITIAL_SOLDIER
 
 
 def setting_up():
