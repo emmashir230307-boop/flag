@@ -2,6 +2,7 @@ import random
 from random import randrange
 import pygame
 import consts
+from flag.consts import SQUARE
 from solider import make_soldier
 
 screen = pygame.display.set_mode((consts.SCREEN_WIDTH,consts.SCREEN_HEIGHT))
@@ -39,22 +40,18 @@ def draw_grass():
         screen.blit(img, tpl)
     pygame.display.flip()
 
-def draw_matrix(matrix):
+def draw_matrix(lst):
     screen=pygame.display.set_mode((consts.SCREEN_WIDTH,consts.SCREEN_HEIGHT))
     screen.blit(consts.GRID_IMG,(0,0))
-    for row in range(len(matrix)):
-        for col in range(len(matrix[row])):
-            if matrix[row][col]==consts.MINE:
-                for k in range(1,3):
-                    if matrix[row][col+k]==consts.MINE:
-                        continue
-                    else:break
-                mine_loc=(row*consts.SQUARE,col*consts.SQUARE)
-                screen.blit(consts.MINE_IMG,mine_loc)
+    for tpl in lst:
+        mine_loc=(tpl[0]*consts.SQUARE,tpl[1]*consts.SQUARE)
+        screen.blit(consts.MINE_IMG,mine_loc)
     pygame.display.update()
 
 def draw_items(x,y):
-    location=make_soldier(x,y)['Location']
+    location_row=make_soldier(x,y)['Row']
+    location_col=make_soldier(x,y)['Col']
+    location=(location_row*consts.SQUARE,location_col*consts.SQUARE)
     screen.blit(consts.SOLDIER_IMG,location)
-    screen.blit(consts.FLAG_IMG,consts.FLAG_POS)
+    screen.blit(consts.FLAG_IMG,(consts.FLAG_POS[0]*SQUARE,consts.FLAG_POS[1]*SQUARE))
     pygame.display.update()
