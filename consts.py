@@ -5,6 +5,7 @@ SCREEN_SIZE=(50,25)
 SCREEN_COLOR=(0,153,0)
 SQUARE=25
 SCREEN_WIDTH,SCREEN_HEIGHT = SCREEN_SIZE[0]*SQUARE,SCREEN_SIZE[1]*SQUARE
+print(SCREEN_WIDTH,SCREEN_HEIGHT)
 
 EXPLOSION_IMG='pictures/explotion.png'
 EXPLOSION_IMG=pygame.image.load(EXPLOSION_IMG)
@@ -16,7 +17,7 @@ FLAG_IMG=pygame.transform.scale(FLAG_IMG,(4*SQUARE,3*SQUARE))
 
 GRASS_IMG='pictures/grass.png'
 GRASS_IMG=pygame.image.load(GRASS_IMG)
-GRASS_IMG=pygame.transform.scale(GRASS_IMG,(2*SQUARE,2*SQUARE))
+GRASS_IMG=pygame.transform.scale(GRASS_IMG,(SQUARE,SQUARE))
 
 INJURY_IMG='pictures/injury.png'
 INJURY_IMG=pygame.image.load(INJURY_IMG)
