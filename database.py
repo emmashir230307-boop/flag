@@ -1,6 +1,8 @@
 import pandas as pd
 import csv
 import pygame
+
+import screen
 from game_field import board
 #pd.read_csv() - loading the files
 #if I have a lot of rows use - filename.to_string() - inside the print command
@@ -64,8 +66,23 @@ def opening(event): #returns true if the file can be opened
         else: flag=False
     return flag
 
-def checking_choice(event): #checking for the num of seconds the key was held down for
-    #if more then second
-    opening(event)
-    #if second or less
-    loading(event)
+def checking_choice(event,seconds): #checking for the num of seconds the key was held down for
+    if seconds>1.0:
+        opening(event)
+    else:
+        loading(event)
+
+def main_code(event):
+    key_press_time = 0
+    space_key_is_down = False
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_SPACE:
+            if not space_key_is_down:
+                space_key_is_down = True
+                key_press_time = pygame.time.get_ticks()
+        elif event.type == pygame.KEYUP:
+            if space_key_is_down:
+                space_key_is_down = False
+                duration_ms = pygame.time.get_ticks() - key_press_time
+                duration_seconds = duration_ms / 1000.0
+                checking_choice(event,duration_seconds)

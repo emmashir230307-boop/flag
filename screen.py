@@ -4,13 +4,12 @@ import pygame
 import consts
 import solider
 import game_field
-from game_field import board
+from flag.game_field import create_board
 
 screen = pygame.display.set_mode((consts.SCREEN_WIDTH,consts.SCREEN_HEIGHT))
 def setting_up():
     pygame.init()
     pygame.display.set_caption('Flag Game')
-    draw_screen()
 
 
 def draw_screen():
@@ -43,11 +42,12 @@ def draw_grass():
     pygame.display.update()
 
 def draw_matrix(lst):
-    screen.blit(consts.GRID_IMG,(0,0))
+    sc=pygame.display.set_mode((consts.SCREEN_WIDTH,consts.SCREEN_HEIGHT))
+    sc.blit(consts.GRID_IMG,(0,0))
     for tpl in lst:
         mine_loc=(tpl[0]*consts.SQUARE,tpl[1]*consts.SQUARE)
-        screen.blit(consts.MINE_IMG,mine_loc)
-    pygame.display.update()
+        sc.blit(consts.MINE_IMG,mine_loc)
+    pygame.display.flip()
 
 def starting_screen():
     screen.blit(consts.SOLDIER_IMG,(0,0))
@@ -56,9 +56,9 @@ def starting_screen():
     screen.blit(consts.FLAG_IMG,(consts.FLAG_POS[0]*consts.SQUARE,consts.FLAG_POS[1]*consts.SQUARE))
     pygame.display.update()
 
-def draw_items(game_board): #have to call apart from other functions bc is changeable
-    row=solider.all_soldier_func(game_board)['Row']
-    col=solider.all_soldier_func(game_board)['Col']
+def draw_items(board): #have to call apart from other functions bc is changeable
+    row=solider.all_soldier_func(board)['Row']
+    col=solider.all_soldier_func(board)['Col']
     location=(row*consts.SQUARE,col*consts.SQUARE)
     screen.blit(consts.SOLDIER_IMG,location)
     pygame.display.update()
@@ -68,14 +68,5 @@ def draw_message(message, font_size, color, location):
     text_img = font.render(message, True, color)
     screen.blit(text_img, location)
 
-def draw_game(state): #refer to the consts
-    if state['state']==consts.WIN_STATE:
-        draw_message(consts.WIN_MESSAGE,consts.FONT_SIZE,consts.BLACK,(consts.SCREEN_HEIGHT/2,consts.SCREEN_WIDTH))
-        pygame.time.wait(1000000)
-    elif state['state']==consts.LOSE_STATE:
-        draw_message(consts.LOSE_MESSAGE,consts.FONT_SIZE,consts.BLACK,(consts.SCREEN_HEIGHT/2,consts.SCREEN_WIDTH))
-        pygame.time.wait(1000000)
-    elif state['state']==consts.EXPOSE_MINES_STATE:
-        draw_matrix(game_field.mines_index())
-        pygame.time.wait(1000)
-    return draw_items(board)
+def draw_game(state):
+    pass

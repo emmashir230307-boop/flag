@@ -4,7 +4,6 @@ import consts
 import screen
 import game_field
 import solider
-from flag.screen import draw_game
 
 state= {
     'running':True,
@@ -20,12 +19,17 @@ def main():
     game_field.insert_mines()
     while state['running']:
         handle_events()
+        print(state)
+
     pygame.quit()
 
 def handle_events():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             state['running']=False
+        elif state['state']!=consts.RUNNING_STATE:
+            continue
+        #diffrent events
         if event.type==pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 move('up')
@@ -37,7 +41,6 @@ def handle_events():
                 move('left')
             elif event.key==pygame.K_KP_ENTER:
                 state['state']=consts.EXPOSE_MINES_STATE
-        draw_game(state)
 
 
 def move(direction):
@@ -46,13 +49,13 @@ def move(direction):
     move_row=0
     move_col = 0
     if direction=='up':
-        move_col=-1
-    elif direction=='down':
-        move_col=+1
-    elif direction=='left':
         move_row=-1
+    elif direction=='down':
+        move_row=1
+    elif direction=='left':
+        move_col=-1
     elif direction=='right':
-        move_row=+1
+        move_col=1
     new_row, new_col = row+move_row, col+move_col
     info['Row'], info["Col"] = row+move_row, col+move_col
     if game_field.touched_mine(solider.legs_location(info)):
