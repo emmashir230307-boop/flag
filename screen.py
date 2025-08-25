@@ -4,6 +4,7 @@ import pygame
 import consts
 import solider
 import game_field
+import time
 
 screen = pygame.display.set_mode((consts.SCREEN_WIDTH,consts.SCREEN_HEIGHT))
 
@@ -76,10 +77,12 @@ def draw_message(message, font_size, color, location):
 def draw_game(state):
     if state['state']==consts.LOSE_STATE:
         draw_message(consts.LOSE_MESSAGE,consts.FONT_SIZE,consts.BLACK,(consts.SCREEN_WIDTH,consts.SCREEN_HEIGHT/2))
-        pygame.time.wait(10000)
+        time.sleep(5)
+        state['running']=False
     elif state['state']==consts.WIN_STATE:
         draw_message(consts.WIN_MESSAGE,consts.FONT_SIZE,consts.BLACK,(consts.SCREEN_WIDTH,consts.SCREEN_HEIGHT/2))
-        pygame.time.wait(10000)
+        pygame.display.update()
+        state['running'] = False
     elif state['state']==consts.EXPOSE_MINES_STATE:
         draw_matrix(game_field.mines_index())
         pygame.time.wait(1000)

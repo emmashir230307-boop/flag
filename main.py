@@ -4,7 +4,6 @@ import screen
 import game_field
 import solider
 from screen import draw_game
-from game_field import board
 
 
 state= {
@@ -23,7 +22,6 @@ def main():
     while state['running']:
         handle_events()
         draw_game(state)
-        print(state)
     pygame.quit()
 
 def handle_events():
@@ -52,11 +50,11 @@ def move(direction):
     if direction=='up':
         move_col=-1
     elif direction=='down':
-        move_col=1
+        move_col=+1
     elif direction=='left':
         move_row=-1
     elif direction=='right':
-        move_row=1
+        move_row=+1
     new_row, new_col = row+move_row, col+move_col
     info['Row'], info["Col"] = row+move_row, col+move_col
     if game_field.touched_mine(solider.legs_location(info)):
@@ -65,6 +63,7 @@ def move(direction):
         state['state']=consts.WIN_STATE
     else:
         if solider.in_range(info):
+            print(len(game_field.board))
             for i in range(len(game_field.board)):
                 for j in range(len(game_field.board[i])):
                     if game_field.board[i][j] == consts.SOLDIER:
