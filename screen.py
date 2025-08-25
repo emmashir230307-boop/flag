@@ -6,18 +6,8 @@ import solider
 from game_field import board
 
 screen = pygame.display.set_mode((consts.SCREEN_WIDTH,consts.SCREEN_HEIGHT))
-def setting_up():
-    pygame.init()
-    pygame.display.set_caption('Flag Game')
 
-
-def draw_screen():
-    screen.fill(consts.SCREEN_COLOR)
-    draw_grass()
-    pygame.display.update()
-
-def draw_grass():
-    img=consts.GRASS_IMG
+def generate_grass():
     grass_loc=[]
     screen_size=consts.SCREEN_SIZE
     row_lst=[]
@@ -31,13 +21,28 @@ def draw_grass():
     for i in range(len(com_choice_row)):
         loc_tpl=(com_choice_row[i]*consts.SQUARE,com_choice_col[i]*consts.SQUARE)
         grass_loc.append(loc_tpl)
-    for tpl in grass_loc:
-        while tpl==consts.INITIAL_SOLDIER or tpl==consts.FLAG_POS or tpl[0]>consts.SCREEN_WIDTH or tpl[1]>consts.SCREEN_HEIGHT:
+    for i in range(len(grass_loc)):
+        while grass_loc[i]==consts.INITIAL_SOLDIER or grass_loc[i]==consts.FLAG_POS or grass_loc[i][0]>consts.SCREEN_WIDTH or grass_loc[i][1]>consts.SCREEN_HEIGHT:
             row_choice=randrange(screen_size[0])
             col_choice=randrange(screen_size[1])
-            tpl=(row_choice,col_choice)
-            continue
-        screen.blit(img, tpl)
+            grass_loc[i]=(row_choice,col_choice)
+    return grass_loc
+
+grass=generate_grass()
+
+def setting_up():
+    pygame.init()
+    pygame.display.set_caption('Flag Game')
+
+
+def draw_screen():
+    screen.fill(consts.SCREEN_COLOR)
+    draw_grass()
+    pygame.display.update()
+
+def draw_grass():
+    for i in grass:
+        screen.blit(consts.GRASS_IMG,i)
     pygame.display.update()
 
 def draw_matrix(lst):
@@ -49,6 +54,7 @@ def draw_matrix(lst):
     pygame.display.flip()
 
 def starting_screen():
+    draw_screen()
     screen.blit(consts.SOLDIER_IMG,(0,0))
     draw_message(consts.START_MESSAGE1,12,(0,0,0),(3*consts.SQUARE,0))
     draw_message(consts.START_MESSAGE2, 12, (0, 0, 0), (3 * consts.SQUARE, 13))
