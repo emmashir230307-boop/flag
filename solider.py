@@ -23,7 +23,7 @@ def body_location(soldier):
     return body_loc_lst
 
 def in_range(soldier):
-    if soldier['Row']>24 or soldier['Row']<0 or soldier['Col']<0 or soldier['Col']>49:
+    if soldier['Row']>21 or soldier['Row']<0 or soldier['Col']<0 or soldier['Col']>48:
         return False
     else: return True
 
@@ -33,11 +33,11 @@ def all_soldier_func(board):
         for j in range(len(board[i])):
             if board[i][j]==consts.SOLDIER:
                 soldier_location=(i,j)
+                break
+        if soldier_location!=('',''):
+            break
     soldier=make_soldier(soldier_location)
-    if in_range(soldier):
-        legs_indexes = legs_location(soldier)
-        body_indexes = body_location(soldier)
-        soldier_info={'legs':legs_indexes,'body':body_indexes,'Row':soldier_location[0],'Col':soldier_location[1]}
-        return soldier_info
-    else:
-        return False
+    legs_indexes = legs_location(soldier)
+    body_indexes = body_location(soldier)
+    soldier_info={'legs':legs_indexes,'body':body_indexes,'Row':soldier_location[0],'Col':soldier_location[1]}
+    return soldier_info

@@ -58,3 +58,11 @@ def draw_items(board): #have to call apart from other functions bc is changeable
     location=(row*consts.SQUARE,col*consts.SQUARE)
     screen.blit(consts.SOLDIER_IMG,location)
     pygame.display.update()
+
+def draw_message(message, font_size, color, location):
+    font = pygame.font.SysFont(consts.FONT_NAME, font_size)
+    text_img = font.render(message, True, color)
+    screen.blit(text_img, location)
+
+def draw_game(state):
+    pass

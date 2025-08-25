@@ -12,8 +12,8 @@ def create_board():
     for i in range(4):
         for j in range(2):
             board[i][j]=consts.SOLDIER
-    for i in range(consts.FLAG_POS[0],consts.SCREEN_SIZE[1]):
-        for j in range(consts.FLAG_POS[1],consts.SCREEN_SIZE[0]):
+    for i in range(consts.FLAG_POS[1],consts.SCREEN_SIZE[1]):
+        for j in range(consts.FLAG_POS[0],consts.SCREEN_SIZE[0]):
             board[i][j]=consts.FLAG
 
 def insert_mines():
@@ -23,7 +23,6 @@ def insert_mines():
         while consts.MINE in board[row][col:col+3] or consts.SOLDIER in board[row][col:col+3] or consts.FLAG in board[row][col:col+3]:
             row = random.randint(0, consts.SCREEN_SIZE[1] - 1)
             col = random.randint(0, consts.SCREEN_SIZE[0] - 3)
-        print(row,col)
         board[row][col:col + 3] = [consts.MINE,consts.MINE,consts.MINE]
 
 def touched_flag(body):
@@ -59,8 +58,3 @@ def mines_index():
                 if flag:
                     indexes.append((i,j))
     return indexes
-
-create_board()
-insert_mines()
-print(mines_index())
-print(flag_index())

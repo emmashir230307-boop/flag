@@ -56,11 +56,13 @@ MINE='mine'
 EMPTY="empty"
 
 INITIAL_SOLDIER=(0,0)
-FLAG_POS=(46,21)
+FLAG_POS=(46,22)
 
 WIN_MESSAGE="You Win!"
 LOSE_MESSAGE="You Stinky Loser"
 START_MESSAGE="Welcome to the flag game!\nHave Fun!"
+FONT_NAME="Calibri"
+
 GRASS_NUM=20
 MINE_NUM=20
 
