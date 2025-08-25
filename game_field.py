@@ -27,13 +27,14 @@ def insert_mines():
 
 def touched_flag(body):
     for i in body:
-        if board[body[i][0]][body[i][1]]==consts.FLAG:
+        if board[i[0]][i[1]]==consts.FLAG:
             return True
     return False
 
 def touched_mine(legs):
-    if board[legs[0]][legs[1]]==consts.MINE:
-        return True
+    for i in legs:
+        if board[i[0]][i[1]]==consts.MINE:
+            return True
     return False
 
 def flag_index():

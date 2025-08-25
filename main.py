@@ -6,9 +6,9 @@ import game_field
 import solider
 
 state= {
+    'running':True,
     'state':consts.RUNNING_STATE,
     'exploded':False,
-    'running':True,
     'expose':False
 }
 
@@ -19,18 +19,8 @@ def main():
     game_field.insert_mines()
     while state['running']:
         handle_events()
-        for i in game_field.board:
-            print(i)
-        print("\n")
-        if state['state'] == consts.RUNNING_STATE:
-            continue
-        elif state['state'] == consts.WIN_STATE:
-            pass  # print win
-        elif state['state'] == consts.LOSE_STATE:
-            pass  # print lose
-        elif state['state'] == consts.EXPOSE_MINES_STATE:
-            pass
-        #main screen func
+        print(state)
+
     pygame.quit()
 
 def handle_events():
@@ -42,81 +32,45 @@ def handle_events():
         #diffrent events
         if event.type==pygame.KEYDOWN:
             if event.key == pygame.K_UP:
-                up(game_field.board)
-
+                move('up')
             elif event.key==pygame.K_DOWN:
-                down(game_field.board)
+                move('down')
             elif event.key==pygame.K_RIGHT:
-                right(game_field.board)
+                move('right')
             elif event.key==pygame.K_LEFT:
-                left(game_field.board)
+                move('left')
             elif event.key==pygame.K_KP_ENTER:
                 state['state']=consts.EXPOSE_MINES_STATE
-        info=solider.all_soldier_func(game_field.board)
-        if game_field.touched_flag(info['body']):
-            state['state']=consts.WIN_STATE
-        if game_field.touched_mine(info['legs']):
-            state['state']=consts.LOSE_STATE
 
 
-
-def up(board):
-    info = solider.all_soldier_func(board)
+def move(direction):
+    info = solider.all_soldier_func(game_field.board)
     row, col = info['Row'], info["Col"]
-    new_row, new_col = row-1, col
-    info['Row'], info["Col"] = row-1, col
-    if solider.in_range(info):
-        for i in range(len(board)):
-            for j in range(len(board[i])):
-                if board[i][j] == consts.SOLDIER:
-                    board[i][j] = consts.EMPTY
-        for i in range(new_row, new_row + 4):
-            for j in range(new_col, new_col + 2):
-                board[i][j] = consts.SOLDIER
-
-
-def down(board):
-    info = solider.all_soldier_func(board)
-    row, col = info['Row'], info["Col"]
-    new_row, new_col = row+1, col
-    info['Row'], info["Col"] = row+1, col
-    if solider.in_range(info):
-        for i in range(len(board)):
-            for j in range(len(board[i])):
-                if board[i][j] == consts.SOLDIER:
-                    board[i][j] = consts.EMPTY
-        for i in range(new_row, new_row + 4):
-            for j in range(new_col, new_col + 2):
-                board[i][j] = consts.SOLDIER
-
-def left(board):
-    info = solider.all_soldier_func(board)
-    row, col = info['Row'], info["Col"]
-    new_row, new_col = row, col-1
-    info['Row'], info["Col"] = row, col-1
-    if solider.in_range(info):
-        for i in range(len(board)):
-            for j in range(len(board[i])):
-                if board[i][j] == consts.SOLDIER:
-                    board[i][j] = consts.EMPTY
-        for i in range(new_row, new_row + 4):
-            for j in range(new_col, new_col + 2):
-                board[i][j] = consts.SOLDIER
-
-def right(board):
-    info=solider.all_soldier_func(board)
-    row,col=info['Row'],info["Col"]
-    new_row,new_col=row,col+1
-    info['Row'], info["Col"]=row,col+1
-    if solider.in_range(info):
-        for i in range(len(board)):
-            for j in range(len(board[i])):
-                if board[i][j]==consts.SOLDIER:
-                     board[i][j] = consts.EMPTY
-        for i in range(new_row,new_row+4):
-            for j in range(new_col,new_col+2):
-                board[i][j] = consts.SOLDIER
-
+    move_row=0
+    move_col = 0
+    if direction=='up':
+        move_row=-1
+    elif direction=='down':
+        move_row=1
+    elif direction=='left':
+        move_col=-1
+    elif direction=='right':
+        move_col=1
+    new_row, new_col = row+move_row, col+move_col
+    info['Row'], info["Col"] = row+move_row, col+move_col
+    if game_field.touched_mine(solider.legs_location(info)):
+        state['state']=consts.LOSE_STATE
+    elif game_field.touched_flag(solider.body_location(info)):
+        state['state']=consts.WIN_STATE
+    else:
+        if solider.in_range(info):
+            for i in range(len(game_field.board)):
+                for j in range(len(game_field.board[i])):
+                    if game_field.board[i][j] == consts.SOLDIER:
+                        game_field.board[i][j] = consts.EMPTY
+            for i in range(new_row, new_row + 4):
+                for j in range(new_col, new_col + 2):
+                    game_field.board[i][j] = consts.SOLDIER
 
 
 if __name__=="__main__":

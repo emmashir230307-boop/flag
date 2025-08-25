@@ -60,7 +60,8 @@ FLAG_POS=(46,22)
 
 WIN_MESSAGE="You Win!"
 LOSE_MESSAGE="You Stinky Loser"
-START_MESSAGE="Welcome to the flag game!\nHave Fun!"
+START_MESSAGE1="Welcome to the flag game!"
+START_MESSAGE2="Have Fun!"
 FONT_NAME="Calibri"
 
 GRASS_NUM=20

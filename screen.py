@@ -49,6 +49,8 @@ def draw_matrix(lst):
 
 def starting_screen():
     screen.blit(consts.SOLDIER_IMG,(0,0))
+    draw_message(consts.START_MESSAGE1,12,(0,0,0),(3*consts.SQUARE,0))
+    draw_message(consts.START_MESSAGE2, 12, (0, 0, 0), (3 * consts.SQUARE, 13))
     screen.blit(consts.FLAG_IMG,(consts.FLAG_POS[0]*consts.SQUARE,consts.FLAG_POS[1]*consts.SQUARE))
     pygame.display.update()
 
