@@ -38,7 +38,7 @@ def setting_up():
 def draw_screen():
     screen.fill(consts.SCREEN_COLOR)
     draw_grass()
-    pygame.display.update()
+    pygame.display.flip()
 
 def draw_grass():
     for i in grass:
@@ -57,10 +57,11 @@ def starting_screen():
     screen.blit(consts.SOLDIER_IMG,(0,0))
     draw_message(consts.START_MESSAGE1,12,(0,0,0),(3*consts.SQUARE,0))
     draw_message(consts.START_MESSAGE2, 12, (0, 0, 0), (3 * consts.SQUARE, 13))
-    screen.blit(consts.FLAG_IMG,(consts.FLAG_POS[0]*consts.SQUARE,consts.FLAG_POS[1]*consts.SQUARE))
     pygame.display.update()
 
 def draw_items(game_board): #have to call apart from other functions bc is changeable
+    draw_screen()
+    screen.blit(consts.FLAG_IMG, (consts.FLAG_POS[0] * consts.SQUARE, consts.FLAG_POS[1] * consts.SQUARE))
     row=solider.all_soldier_func(game_board)['Row']
     col=solider.all_soldier_func(game_board)['Col']
     location=(row*consts.SQUARE,col*consts.SQUARE)
@@ -82,3 +83,4 @@ def draw_game(state):
     elif state['state']==consts.EXPOSE_MINES_STATE:
         draw_matrix(game_field.mines_index())
         pygame.time.wait(1000)
+        state['state']=consts.RUNNING_STATE
