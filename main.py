@@ -1,5 +1,4 @@
 import pygame
-import time
 import consts
 import screen
 import game_field
