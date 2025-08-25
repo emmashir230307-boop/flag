@@ -1,4 +1,4 @@
-from io import BytesIO
+
 import pygame
 
 FPS=60
