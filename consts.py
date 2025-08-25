@@ -1,6 +1,5 @@
 from io import BytesIO
 import pygame
-import requests
 
 FPS=60
 SCREEN_SIZE=(50,25)
@@ -45,9 +44,8 @@ SOLDIER_NIGHT_IMG='pictures/soldier_nigth.png'
 SOLDIER_NIGHT_IMG=pygame.image.load(SOLDIER_NIGHT_IMG)
 SOLDIER_NIGHT_IMG=pygame.transform.scale(SOLDIER_NIGHT_IMG,(2*SQUARE,4*SQUARE))
 
-IMG1 = 'https://static.vecteezy.com/system/resources/thumbnails/025/872/018/small_2x/cyber-grid-retro-punk-perspective-rectangular-tunnel-grid-tunnel-geometry-on-black-background-illustration-vector.jpg'
-response = requests.get(IMG1)
-GRID_IMG = pygame.image.load(BytesIO(response.content))
+GRID_IMG='pictures/grid.png'
+GRID_IMG = pygame.image.load(GRID_IMG)
 GRID_IMG = pygame.transform.scale(GRID_IMG, (SCREEN_WIDTH, SCREEN_HEIGHT))
 
 FLAG="flag"

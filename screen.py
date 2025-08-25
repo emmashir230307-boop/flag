@@ -2,6 +2,7 @@ import random
 from random import randrange
 import pygame
 import consts
+import game_field
 import solider
 
 screen = pygame.display.set_mode((consts.SCREEN_WIDTH,consts.SCREEN_HEIGHT))
@@ -46,6 +47,7 @@ def draw_matrix(lst):
         mine_loc=(tpl[0]*consts.SQUARE,tpl[1]*consts.SQUARE)
         screen.blit(consts.MINE_IMG,mine_loc)
     pygame.display.update()
+setting_up()
 
 def starting_screen():
     screen.blit(consts.SOLDIER_IMG,(0,0))
