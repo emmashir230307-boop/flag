@@ -2,14 +2,15 @@ import random
 from random import randrange
 import pygame
 import consts
-import game_field
 import solider
+import game_field
+from flag.game_field import create_board
 
 screen = pygame.display.set_mode((consts.SCREEN_WIDTH,consts.SCREEN_HEIGHT))
 def setting_up():
     pygame.init()
     pygame.display.set_caption('Flag Game')
-    draw_screen()
+
 
 def draw_screen():
     screen.fill(consts.SCREEN_COLOR)
@@ -38,16 +39,15 @@ def draw_grass():
             tpl=(row_choice,col_choice)
             continue
         screen.blit(img, tpl)
-    pygame.display.flip()
+    pygame.display.update()
 
 def draw_matrix(lst):
-    screen=pygame.display.set_mode((consts.SCREEN_WIDTH,consts.SCREEN_HEIGHT))
-    screen.blit(consts.GRID_IMG,(0,0))
+    sc=pygame.display.set_mode((consts.SCREEN_WIDTH,consts.SCREEN_HEIGHT))
+    sc.blit(consts.GRID_IMG,(0,0))
     for tpl in lst:
         mine_loc=(tpl[0]*consts.SQUARE,tpl[1]*consts.SQUARE)
-        screen.blit(consts.MINE_IMG,mine_loc)
-    pygame.display.update()
-setting_up()
+        sc.blit(consts.MINE_IMG,mine_loc)
+    pygame.display.flip()
 
 def starting_screen():
     screen.blit(consts.SOLDIER_IMG,(0,0))

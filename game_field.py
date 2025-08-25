@@ -45,7 +45,7 @@ def flag_index():
                 indexes.append((i,j))
     return indexes
 
-def mines_index():
+def mines_index(): #problem here
     indexes = []
     for i in range(len(board)):
         for j in range(len(board[i])-2):
