@@ -32,12 +32,13 @@ def all_soldier_func(board):
     for i in range(len(board)):
         for j in range(len(board[i])):
             if board[i][j]==consts.SOLDIER:
-                soldier_location=(i,j)
+                soldier_location=(j,i)
                 break
         if soldier_location!=('',''):
             break
+    print(soldier_location)
     soldier=make_soldier(soldier_location)
     legs_indexes = legs_location(soldier)
     body_indexes = body_location(soldier)
-    soldier_info={'legs':legs_indexes,'body':body_indexes,'Row':soldier_location[0],'Col':soldier_location[1]}
+    soldier_info={'legs':legs_indexes,'body':body_indexes,'Row':soldier_location[1],'Col':soldier_location[0]}
     return soldier_info
