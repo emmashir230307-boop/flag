@@ -7,15 +7,6 @@ import game_field
 from game_field import create_board
 
 screen = pygame.display.set_mode((consts.SCREEN_WIDTH,consts.SCREEN_HEIGHT))
-def setting_up():
-    pygame.init()
-    pygame.display.set_caption('Flag Game')
-
-
-def draw_screen():
-    screen.fill(consts.SCREEN_COLOR)
-    draw_grass(generate_grass())
-    pygame.display.update()
 
 def generate_grass():
     grass_loc=[]
@@ -38,7 +29,19 @@ def generate_grass():
             grass_loc[i]=(row_choice,col_choice)
     return grass_loc
 
-def draw_grass(grass):
+grass=generate_grass()
+
+def setting_up():
+    pygame.init()
+    pygame.display.set_caption('Flag Game')
+
+
+def draw_screen():
+    screen.fill(consts.SCREEN_COLOR)
+    draw_grass()
+    pygame.display.update()
+
+def draw_grass():
     for i in grass:
         screen.blit(consts.GRASS_IMG,i)
     pygame.display.update()
