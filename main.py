@@ -19,7 +19,6 @@ def main():
     game_field.insert_mines()
     while state['running']:
         handle_events()
-        print(state)
 
     pygame.quit()
 
