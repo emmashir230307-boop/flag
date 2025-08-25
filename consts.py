@@ -8,7 +8,7 @@ SCREEN_COLOR=(0,153,0)
 SQUARE=25
 SCREEN_WIDTH,SCREEN_HEIGHT = SCREEN_SIZE[0]*SQUARE,SCREEN_SIZE[1]*SQUARE
 SOLDIER_SIZE=(2,4)
-
+#1250,625
 EXPLOSION_IMG='pictures/explotion.png'
 EXPLOSION_IMG=pygame.image.load(EXPLOSION_IMG)
 EXPLOSION_IMG=pygame.transform.scale(EXPLOSION_IMG,(3*SQUARE,1*SQUARE))
@@ -35,7 +35,7 @@ SNAKE_IMG=pygame.transform.scale(SNAKE_IMG,(3*SQUARE,3*SQUARE))
 
 SOLDIER_IMG='pictures/soldier.png'
 SOLDIER_IMG=pygame.image.load(SOLDIER_IMG)
-SOLDIER_IMG=pygame.transform.scale(SOLDIER_IMG,(2*SQUARE,4*SQUARE))
+SOLDIER_IMG=pygame.transform.scale(SOLDIER_IMG,(3*SQUARE,3*SQUARE))
 
 SOLDIER2_IMG='pictures/soldier (2).png'
 SOLDIER2_IMG=pygame.image.load(SOLDIER2_IMG)
@@ -56,7 +56,7 @@ MINE='mine'
 EMPTY="empty"
 
 INITIAL_SOLDIER=(0,0)
-FLAG_POS=(SCREEN_SIZE[1]-3,SCREEN_SIZE[0]-4)
+FLAG_POS=(46,21)
 
 WIN_MESSAGE="You Win!"
 LOSE_MESSAGE="You Stinky Loser"

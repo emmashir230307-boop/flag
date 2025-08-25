@@ -2,8 +2,7 @@ import random
 from random import randrange
 import pygame
 import consts
-from flag.consts import SQUARE
-from solider import make_soldier
+import solider
 
 screen = pygame.display.set_mode((consts.SCREEN_WIDTH,consts.SCREEN_HEIGHT))
 def setting_up():
@@ -48,10 +47,14 @@ def draw_matrix(lst):
         screen.blit(consts.MINE_IMG,mine_loc)
     pygame.display.update()
 
-def draw_items(x,y):
-    location_row=make_soldier(x,y)['Row']
-    location_col=make_soldier(x,y)['Col']
-    location=(location_row*consts.SQUARE,location_col*consts.SQUARE)
+def starting_screen():
+    screen.blit(consts.SOLDIER_IMG,(0,0))
+    screen.blit(consts.FLAG_IMG,(consts.FLAG_POS[0]*consts.SQUARE,consts.FLAG_POS[1]*consts.SQUARE))
+    pygame.display.update()
+
+def draw_items(board): #have to call apart from other functions bc is changeable
+    row=solider.all_soldier_func(board)['Row']
+    col=solider.all_soldier_func(board)['Col']
+    location=(row*consts.SQUARE,col*consts.SQUARE)
     screen.blit(consts.SOLDIER_IMG,location)
-    screen.blit(consts.FLAG_IMG,(consts.FLAG_POS[0]*SQUARE,consts.FLAG_POS[1]*SQUARE))
     pygame.display.update()

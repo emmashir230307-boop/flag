@@ -13,9 +13,10 @@ state= {
 }
 
 def main():
-    pygame.init()
-    game_field.create_board(game_field.board)
-    game_field.insert_mines(game_field.board)
+    screen.setting_up()
+    board=game_field.create_board()
+    screen.starting_screen()
+    game_field.insert_mines()
     while state['running']:
         handle_events()
         if state['state'] == consts.RUNNING_STATE:
@@ -41,6 +42,7 @@ def handle_events():
         if event.type==pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 up(game_field.board)
+
             elif event.key==pygame.K_DOWN:
                 down(game_field.board)
             elif event.key==pygame.K_RIGHT:
@@ -51,60 +53,59 @@ def handle_events():
                 state['state']=consts.EXPOSE_MINES_STATE
         #win lose
 
-def soldier_location(board):
-    for i in range(len(board)):
-        for j in range(len(board[i])):
-            if board[i][j]==consts.SOLDIER:
-                return i,j
-    return None
-
-
 
 def up(board):
-    row,col=soldier_location(board)
-    if solider.out_of_range(row-1,col):
-        new_row,new_col=row-1,col
-        for i in range(row,row+4):
-            for j in range(col,col+2):
-                board[i][j] = consts.EMPTY
-        for i in range(new_row,new_row+4):
-            for j in range(new_col,new_col+2):
-                board[i][j] = consts.SOLDIER
+    row, col = solider.all_soldier_func(board)
+    new_row,new_col=row-1,col
+    for i in range(row,row+4):
+        for j in range(col,col+2):
+            board[i][j] = consts.EMPTY
+    for i in range(new_row,new_row+4):
+        for j in range(new_col,new_col+2):
+            board[i][j] = consts.SOLDIER
+    if solider.all_soldier_func(board) is False:
+        pass
+
 
 def down(board):
-    row,col=soldier_location(board)
-    if solider.out_of_range(row+1,col):
-        new_row,new_col=row+1,col
-        for i in range(row,row+4):
-            for j in range(col,col+2):
-                board[i][j] = consts.EMPTY
-        for i in range(new_row,new_row+4):
-            for j in range(new_col,new_col+2):
-                board[i][j] = consts.SOLDIER
+    row,col=solider.all_soldier_func(board)
+    new_row,new_col=row+1,col
+    for i in range(row,row+4):
+        for j in range(col,col+2):
+            board[i][j] = consts.EMPTY
+    for i in range(new_row,new_row+4):
+        for j in range(new_col,new_col+2):
+            board[i][j] = consts.SOLDIER
+    solider.all_soldier_func(board)
+    if solider.all_soldier_func(board) is False:
+        pass
 
 def left(board):
-    row,col=soldier_location(board)
-    if solider.out_of_range(row,col-1):
-        new_row,new_col=row,col-1
-        for i in range(row,row+4):
-            for j in range(col,col+2):
-                board[i][j] = consts.EMPTY
-        for i in range(new_row,new_row+4):
-            for j in range(new_col,new_col+2):
-                board[i][j] = consts.SOLDIER
+    row,col=solider.all_soldier_func(board)
+    new_row,new_col=row,col-1
+    for i in range(row,row+4):
+        for j in range(col,col+2):
+            board[i][j] = consts.EMPTY
+    for i in range(new_row,new_row+4):
+        for j in range(new_col,new_col+2):
+            board[i][j] = consts.SOLDIER
+    solider.all_soldier_func(board)
+    if solider.all_soldier_func(board) is False:
+        pass
 
 def right(board):
-    row,col=soldier_location(board)
-    if solider.out_of_range(row,col+1):
-        new_row,new_col=row,col+1
-        for i in range(row,row+4):
-            for j in range(col,col+2):
-                board[i][j] = consts.EMPTY
-        for i in range(new_row,new_row+4):
-            for j in range(new_col,new_col+2):
-                board[i][j] = consts.SOLDIER
+    row,col=solider.all_soldier_func(board)
+    new_row,new_col=row,col+1
+    for i in range(row,row+4):
+        for j in range(col,col+2):
+            board[i][j] = consts.EMPTY
+    for i in range(new_row,new_row+4):
+        for j in range(new_col,new_col+2):
+            board[i][j] = consts.SOLDIER
+    solider.all_soldier_func(board)
+    if solider.all_soldier_func(board) is False:
+        pass
 
 
 if __name__=="__main__":
     main()
-

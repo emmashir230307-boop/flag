@@ -28,7 +28,7 @@ def insert_mines():
 
 def touched_flag(body):
     for i in body:
-        if board[body[0]][body[1]]==consts.FLAG:
+        if board[body[i][0]][body[i][1]]==consts.FLAG:
             return True
     return False
 
@@ -64,5 +64,3 @@ create_board()
 insert_mines()
 print(mines_index())
 print(flag_index())
-
-
