@@ -23,7 +23,6 @@ def main():
     while state['running']:
         handle_events()
         draw_game(state)
-        print(state)
     pygame.quit()
 
 def handle_events():

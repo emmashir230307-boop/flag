@@ -18,8 +18,8 @@ def generate_grass():
         col_lst.append(no)
     com_choice_row=random.sample(row_lst,consts.GRASS_NUM)
     com_choice_col=random.sample(col_lst,consts.GRASS_NUM)
-    for i in range(len(com_choice_row)):
-        loc_tpl=(com_choice_row[i]*consts.SQUARE,com_choice_col[i]*consts.SQUARE)
+    for j in range(len(com_choice_row)):
+        loc_tpl=(com_choice_row[j]*consts.SQUARE,com_choice_col[j]*consts.SQUARE)
         grass_loc.append(loc_tpl)
     for i in range(len(grass_loc)):
         while grass_loc[i]==consts.INITIAL_SOLDIER or grass_loc[i]==consts.FLAG_POS or grass_loc[i][0]>consts.SCREEN_WIDTH or grass_loc[i][1]>consts.SCREEN_HEIGHT:
@@ -55,6 +55,7 @@ def draw_matrix(lst):
 def starting_screen():
     draw_screen()
     screen.blit(consts.SOLDIER_IMG,(0,0))
+    screen.blit(consts.FLAG_IMG, (consts.FLAG_POS[0] * consts.SQUARE, consts.FLAG_POS[1] * consts.SQUARE))
     draw_message(consts.START_MESSAGE1,12,(0,0,0),(3*consts.SQUARE,0))
     draw_message(consts.START_MESSAGE2, 12, (0, 0, 0), (3 * consts.SQUARE, 13))
     pygame.display.update()

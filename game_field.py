@@ -18,12 +18,13 @@ def create_board():
 
 def insert_mines():
     for i in range(consts.MINE_NUM):
-        row=random.randint(0,consts.SCREEN_SIZE[1]-1)
-        col=random.randint(0,consts.SCREEN_SIZE[0]-3)
-        while consts.MINE in board[row][col:col+3] or consts.SOLDIER in board[row][col:col+3] or consts.FLAG in board[row][col:col+3]:
+        row = random.randint(0, consts.SCREEN_SIZE[1] - 1)
+        col = random.randint(0, consts.SCREEN_SIZE[0] - 3)
+        while consts.MINE in board[row][col:col + 3] or consts.SOLDIER in board[row][col:col + 3] or consts.FLAG in board[row][col:col + 3]:
             row = random.randint(0, consts.SCREEN_SIZE[1] - 1)
             col = random.randint(0, consts.SCREEN_SIZE[0] - 3)
-        board[row][col:col + 3] = [consts.MINE,consts.MINE,consts.MINE]
+            continue
+        board[row][col:col + 3] = [consts.MINE, consts.MINE, consts.MINE]
 
 def touched_flag(body):
     for i in body:
