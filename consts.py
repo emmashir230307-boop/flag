@@ -61,7 +61,8 @@ LOSE_MESSAGE="You Stinky Loser"
 START_MESSAGE1="Welcome to the flag game!"
 START_MESSAGE2="Have Fun!"
 FONT_NAME="Calibri"
-
+BLACK=(0,0,0)
+FONT_SIZE=30
 GRASS_NUM=20
 MINE_NUM=20
 
