@@ -84,3 +84,6 @@ def draw_game(state):
         draw_matrix(game_field.mines_index())
         pygame.time.wait(1000)
         state['state']=consts.RUNNING_STATE
+    if state['moved']:
+        draw_items(game_field.board)
+        state['moved']=False

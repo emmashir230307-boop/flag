@@ -11,7 +11,8 @@ state= {
     'running':True,
     'state':consts.RUNNING_STATE,
     'exploded':False,
-    'expose':False
+    'expose':False,
+    'moved':False
 }
 
 def main():
@@ -21,9 +22,8 @@ def main():
     game_field.insert_mines()
     while state['running']:
         handle_events()
-        print(state)
         draw_game(state)
-        screen.draw_items(board)
+        print(state)
     pygame.quit()
 
 def handle_events():
@@ -41,6 +41,7 @@ def handle_events():
                 move('left')
             elif event.key==pygame.K_KP_ENTER:
                 state['state']=consts.EXPOSE_MINES_STATE
+            state['moved']=True
 
 
 def move(direction):
