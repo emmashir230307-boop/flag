@@ -3,7 +3,7 @@ from random import randrange
 import pygame
 import consts
 import solider
-from game_field import board
+import game_field
 
 screen = pygame.display.set_mode((consts.SCREEN_WIDTH,consts.SCREEN_HEIGHT))
 
@@ -46,12 +46,11 @@ def draw_grass():
     pygame.display.update()
 
 def draw_matrix(lst):
-    sc=pygame.display.set_mode((consts.SCREEN_WIDTH,consts.SCREEN_HEIGHT))
-    sc.blit(consts.GRID_IMG,(0,0))
+    screen.blit(consts.GRID_IMG,(0,0))
     for tpl in lst:
         mine_loc=(tpl[0]*consts.SQUARE,tpl[1]*consts.SQUARE)
-        sc.blit(consts.MINE_IMG,mine_loc)
-    pygame.display.flip()
+        screen.blit(consts.MINE_IMG,mine_loc)
+    pygame.display.update()
 
 def starting_screen():
     draw_screen()
@@ -81,5 +80,5 @@ def draw_game(state):
         draw_message(consts.WIN_MESSAGE,consts.FONT_SIZE,consts.BLACK,(consts.SCREEN_WIDTH,consts.SCREEN_HEIGHT/2))
         pygame.time.wait(10000)
     elif state['state']==consts.EXPOSE_MINES_STATE:
-        draw_matrix(board)
+        draw_matrix(game_field.mines_index())
         pygame.time.wait(1000)

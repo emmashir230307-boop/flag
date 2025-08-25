@@ -4,6 +4,9 @@ import consts
 import screen
 import game_field
 import solider
+from flag.screen import draw_game
+from game_field import board
+
 
 state= {
     'running':True,
@@ -20,16 +23,14 @@ def main():
     while state['running']:
         handle_events()
         print(state)
-
+        draw_game(state)
+        screen.draw_items(board)
     pygame.quit()
 
 def handle_events():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             state['running']=False
-        elif state['state']!=consts.RUNNING_STATE:
-            continue
-        #diffrent events
         if event.type==pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 move('up')
@@ -49,13 +50,13 @@ def move(direction):
     move_row=0
     move_col = 0
     if direction=='up':
-        move_row=-1
-    elif direction=='down':
-        move_row=1
-    elif direction=='left':
         move_col=-1
-    elif direction=='right':
+    elif direction=='down':
         move_col=1
+    elif direction=='left':
+        move_row=-1
+    elif direction=='right':
+        move_row=1
     new_row, new_col = row+move_row, col+move_col
     info['Row'], info["Col"] = row+move_row, col+move_col
     if game_field.touched_mine(solider.legs_location(info)):
