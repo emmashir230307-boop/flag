@@ -4,7 +4,7 @@ import consts
 import screen
 import game_field
 import solider
-from flag.screen import draw_game
+from screen import draw_game
 from game_field import board
 
 
